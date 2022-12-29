@@ -31,6 +31,6 @@ app.get('/profile/:id', profile.handleProfile(db));
 app.put('/image', image.handleImage(db));
 app.post('/imageurl', image.handleApiCall());
 
-app.listen(3000, () => {
-  console.log('face recognition brain is running');
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`face recognition brain is running ${process.env.PORT || 3000}`);
 })
