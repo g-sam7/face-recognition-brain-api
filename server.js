@@ -4,6 +4,10 @@ const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
 
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(cors());
+
 const register = require('./controllers/register');
 const profile = require('./controllers/profile');
 const signin = require('./controllers/signin');
@@ -16,10 +20,6 @@ const db = knex({
     ssl: true,
   }
 });
-
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
-app.use(cors());
 
 app.get('/', (req, res) => { res.send("Success!") });
 app.post('/signin', signin.handleSignin(db, bcrypt));
